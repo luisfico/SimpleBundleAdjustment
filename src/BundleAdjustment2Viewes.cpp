@@ -441,9 +441,11 @@ namespace BA2Viewes {
     std::cout << "Debug preBA(add noise) map = "<< std::endl;
         for(int i = 0; i < mm_noised_structure.cols; i++) 
           std::cout << mm_noised_structure.at<double>(0,i)<<";"<<mm_noised_structure.at<double>(1,i)<<";"<<mm_noised_structure.at<double>(2,i) << std::endl;
-    std::cout << "Debug preBA(add noise) pose(trasl)1= "<< std::endl;
+    std::cout << "Debug preBA(add noise) pose1= "<< std::endl;
+          std::cout << mpm_noised_poses.first<< std::endl;
           std::cout << mpm_noised_poses.first.at<double>(0,3)<<";"<<mpm_noised_poses.first.at<double>(1,3)<<";"<<mpm_noised_poses.first.at<double>(2,3) << std::endl;
-    std::cout << "Debug preBA(add noise) pose(trasl)2= "<< std::endl;
+    std::cout << "Debug preBA(add noise) pose2= "<< std::endl;
+          std::cout << mpm_noised_poses.second<< std::endl;
           std::cout << mpm_noised_poses.second.at<double>(0,3)<<";"<<mpm_noised_poses.second.at<double>(1,3)<<";"<<mpm_noised_poses.second.at<double>(2,3) << std::endl;
 
 
@@ -469,8 +471,10 @@ namespace BA2Viewes {
         for(int i = 0; i < vm_data_for_process[0].cols; i++) 
           std::cout << vm_data_for_process[0].at<double>(0,i)<<";"<<vm_data_for_process[0].at<double>(1,i)<<";"<<vm_data_for_process[0].at<double>(2,i) << std::endl;
     std::cout << "Debug postBA pose(trasl)1= "<< std::endl;
+          std::cout << vm_data_for_process[1]<< std::endl;
           std::cout << vm_data_for_process[1].at<double>(0,3)<<";"<<vm_data_for_process[1].at<double>(1,3)<<";"<<vm_data_for_process[1].at<double>(2,3) << std::endl;
     std::cout << "Debug postBA pose(trasl)2= "<< std::endl;
+          std::cout << vm_data_for_process[2]<< std::endl;
           std::cout << vm_data_for_process[2].at<double>(0,3)<<";"<<vm_data_for_process[2].at<double>(1,3)<<";"<<vm_data_for_process[2].at<double>(2,3) << std::endl;
 
     return error;

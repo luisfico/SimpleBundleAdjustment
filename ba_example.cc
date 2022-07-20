@@ -209,7 +209,11 @@ int main(int argc, char* argv[]) {
     std::cout << "[MODE] = FULL" << std::endl;
     cv::Mat Rt2_noise;
     AddNoiseToPose(Rt2, Rt2_noise);
-
+ 
+    std::cout << "Debug pose (no BA)= "<< std::endl;
+    std::cout << Rt2<< std::endl;
+    std::cout << Rt2.at<double>(0,3)<<";"<<Rt2.at<double>(1,3)<<";"<<Rt2.at<double>(2,3) << std::endl;
+  
     cv::Mat point3d_noise;
     AddNoiseToStructure(mat_point3d, point3d_noise);
 
