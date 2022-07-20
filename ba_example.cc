@@ -24,8 +24,14 @@ int main(int argc, char* argv[]) {
 
   // Camera intristic parameter matrix
   // I did not calibration
+/* Default calib
   cv::Mat K = (cv::Mat_<float>(3,3) <<  500.f,   0.f, image1.cols / 2.f,
                                           0.f, 500.f, image1.rows / 2.f,
+                                          0.f,   0.f,               1.f);
+*/
+//calib rs REALSENSE_D435i  1280x720   CameraIntrinsics{1280, 720, 931.741, 930.044, 650.74, 354.855}; // by default RS calib intrinsic  1280x720 without distortion
+  cv::Mat K = (cv::Mat_<float>(3,3) <<  931.741,   0.f, 650.74,
+                                          0.f, 930.044, 354.855,
                                           0.f,   0.f,               1.f);
 
   vector<cv::KeyPoint> kpts_vec1, kpts_vec2;
@@ -153,13 +159,18 @@ int main(int argc, char* argv[]) {
 
   cv::Mat mat_point3d = cv::Mat::zeros(3, point3d_homo.cols, CV_64F);
 
+  std::cout << "Debug mat_point3d preBA= "<< std::endl;
+  
   for(int i = 0; i < mat_point3d.cols; i++) {
     mat_point3d.at<double>(0,i) = point3d_homo.at<double>(0,i)/point3d_homo.at<double>(3,i);
     mat_point3d.at<double>(1,i) = point3d_homo.at<double>(1,i)/point3d_homo.at<double>(3,i);
     mat_point3d.at<double>(2,i) = point3d_homo.at<double>(2,i)/point3d_homo.at<double>(3,i);
+    //Debug point map
+    std::cout << mat_point3d.at<double>(0,i)<<";"<<mat_point3d.at<double>(1,i)<<";"<<mat_point3d.at<double>(2,i) << std::endl;
   }
 
-  std::cout << "[Map-Point-Num] = " << mat_point3d.cols << std::endl;
+
+
 
   const BA2Viewes::PoseAndStructure pose_and_structure {
     Kd,
@@ -190,9 +201,9 @@ int main(int argc, char* argv[]) {
     optimizer.SetTargetData(std::vector<cv::Mat>{point3d_noise});
   }
   else if (ba_mode == BA2Viewes::FULL) {
-    /* FULL BA は収束半径が他よりも狭いので(?)ノイズを十分に小さくする必要があるかもしれない
-     * また，最初のカメラは原点に固定しておき，第2カメラからも一つ自由度を奪う．(固定しないと収束しない)
-     * [バンドル調整　岡谷]でググると出てくる資料には上記の処理が書いてあり，こうしないと収束しなかった
+    /* FULL BA : Tiene un radio de convergencia más estrecho que otros, por lo que (?) Es posible que el ruido deba ser lo suficientemente pequeño
+      * Además, la primera cámara se fija en el origen y se toma un grado de libertad de la segunda cámara. (Si no es fijo, no convergerá)
+      * El proceso anterior está escrito en el material que sale cuando buscas en Google en [Ajuste del paquete Okaya], de lo contrario no convergerá.
      */
     std::cout << "[MODE] = FULL" << std::endl;
     cv::Mat Rt2_noise;
@@ -206,5 +217,12 @@ int main(int argc, char* argv[]) {
 
   optimizer.Run();
   optimizer.Spin();
+
+/*
+    std::cout << "Debug mat_point3d postBA= "<< std::endl;
+    for(int i = 0; i < mat_point3d.cols; i++) 
+      std::cout << mat_point3d.at<double>(0,i)<<";"<<mat_point3d.at<double>(1,i)<<";"<<mat_point3d.at<double>(2,i) << std::endl;
+ */
+
   return 0;
 }

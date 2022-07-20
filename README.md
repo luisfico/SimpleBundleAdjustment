@@ -32,7 +32,7 @@ OpenCV is used for initialization and calculation of matrices.
 ```
 mkdir build && cd build && cmake .. && make
 ./ba_example [path/to/image1] [path/to/image2]
-```
+./ba_example RS.png RSMov30cm.png
 
 ------
 # 2-Viewでのバンドル調整
