@@ -182,7 +182,7 @@ int main(int argc, char* argv[]) {
   const BA2Viewes::BAMode ba_mode = BA2Viewes::FULL;
 
   BA2Viewes::Optimizer optimizer{pose_and_structure, ba_mode};
-  //optimizer.SetImagePair(std::make_pair(image1,image2));
+  optimizer.SetImagePair(std::make_pair(image1,image2)); //ENABLE FOR DEBUG 
   optimizer.SetVerbose(true);
 
   if(ba_mode == BA2Viewes::POSE) {
