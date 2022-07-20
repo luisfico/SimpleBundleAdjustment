@@ -78,7 +78,7 @@ int main(int argc, char* argv[]) {
                 cv::Point2f(selected_points2[i].x + image1.cols, selected_points2[i].y),
                 1, 1, 0 );
     }
-    cv::imwrite("match-result.png", src);
+    //cv::imwrite("match-result.png", src);
   }
 
   cv::Mat Kd;
@@ -107,7 +107,7 @@ int main(int argc, char* argv[]) {
                 cv::Point2f(inlier_match_points2[i].x + image1.cols, inlier_match_points2[i].y),
                 1, 1, 0 );
     }
-    cv::imwrite("inlier_match_points.png", src);
+    //cv::imwrite("inlier_match_points.png", src);
   }
 
   mask.release();
@@ -140,7 +140,7 @@ int main(int argc, char* argv[]) {
                             (float)triangulation_points2[i].y),
                 1, 1, 0 );
     }
-    cv::imwrite("triangulatedPoints.png", src);
+    //cv::imwrite("triangulatedPoints.png", src);
   }
 
   cv::Mat Rt1 = cv::Mat::eye(3, 4, CV_64FC1);

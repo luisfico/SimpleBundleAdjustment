@@ -406,6 +406,10 @@ namespace BA2Viewes {
     double error = -1.0;
     cv::Mat m_structure_for_process = mm_noised_structure.clone();
 
+    std::cout << "Debug mm_noised_structure preBA= "<< std::endl;
+        for(int i = 0; i < m_structure_for_process.cols; i++) 
+          std::cout << m_structure_for_process.at<double>(0,i)<<";"<<m_structure_for_process.at<double>(1,i)<<";"<<m_structure_for_process.at<double>(2,i) << std::endl;
+
     for(int iter = 0; iter < m_MAXITER; iter++) {
       cv::Mat J = ComputeJ(std::vector<cv::Mat>{m_structure_for_process}, m_pose_and_structure);
       cv::Mat mat_reprojection_error;
@@ -419,9 +423,13 @@ namespace BA2Viewes {
       m_structure_for_process = UpdateParams(std::vector<cv::Mat>{m_structure_for_process}, delta_x)[0];
 
       if(mb_verbose) {
-        ShowProcess(std::vector<cv::Mat>{m_structure_for_process}, m_pose_and_structure);
+        ShowProcess(std::vector<cv::Mat>{m_structure_for_process}, m_pose_and_structure); 
       }
     }
+
+    std::cout << "Debug m_structure_for_process postBA= "<< std::endl;
+        for(int i = 0; i < m_structure_for_process.cols; i++) 
+          std::cout << m_structure_for_process.at<double>(0,i)<<";"<<m_structure_for_process.at<double>(1,i)<<";"<<m_structure_for_process.at<double>(2,i) << std::endl;
 
     return error;
   }
