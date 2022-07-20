@@ -159,7 +159,7 @@ int main(int argc, char* argv[]) {
 
   cv::Mat mat_point3d = cv::Mat::zeros(3, point3d_homo.cols, CV_64F);
 
-  std::cout << "Debug mat_point3d preBA= "<< std::endl;
+  std::cout << "Debug mat_point3d postTriangulation= "<< std::endl;
   
   for(int i = 0; i < mat_point3d.cols; i++) {
     mat_point3d.at<double>(0,i) = point3d_homo.at<double>(0,i)/point3d_homo.at<double>(3,i);
@@ -179,8 +179,8 @@ int main(int argc, char* argv[]) {
   };
 
   /* POSE, STRUCTURE, FULL */
-  //const BA2Viewes::BAMode ba_mode = BA2Viewes::FULL;
-  const BA2Viewes::BAMode ba_mode = BA2Viewes::STRUCTURE;
+  const BA2Viewes::BAMode ba_mode = BA2Viewes::FULL;
+  //const BA2Viewes::BAMode ba_mode = BA2Viewes::STRUCTURE;
 
   BA2Viewes::Optimizer optimizer{pose_and_structure, ba_mode};
   optimizer.SetImagePair(std::make_pair(image1,image2)); //ENABLE FOR DEBUG 
