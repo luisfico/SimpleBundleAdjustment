@@ -452,6 +452,10 @@ namespace BA2Viewes {
     std::vector<cv::Mat> vm_data_for_process{mm_noised_structure, mpm_noised_poses.first, mpm_noised_poses.second};
     for(int iter = 0; iter < m_MAXITER; iter++) {
       cv::Mat J = ComputeJ(vm_data_for_process, m_pose_and_structure);
+      
+      std::cout << "--------iter_num = " << iter << " )"<< std::endl;
+      //std::cout << "Debug Compute J= "<< std::endl; std::cout << J<< std::endl; //KO to debug watch sparse J
+      
       cv::Mat mat_reprojection_error;
       double current_error = ComputeReprojectionError(mat_reprojection_error, vm_data_for_process, m_pose_and_structure);
       if(IsConverged(current_error, error)) {
