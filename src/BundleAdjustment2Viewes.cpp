@@ -81,9 +81,16 @@ namespace BA2Viewes {
         cv::Mat point3d_homo = cv::Mat::ones(4, vm_data_for_process[0].cols, CV_64F);
         vm_data_for_process[0].copyTo(point3d_homo.rowRange(0,3));
         std::vector<cv::Mat> vm_poses{vm_data_for_process[1], vm_data_for_process[2]};
+        //std::vector<cv::Mat> vm_poses{vm_data_for_process[1], vm_data_for_process[2],vm_data_for_process[3]}; //NEED 3 camera poses 
+        /*Remmember :
+        vm_data_for_process[0] is map
+        vm_data_for_process[1] is 1st camera pose (usually identity)
+        vm_data_for_process[2] is 2nd camera pose
+        ...
+        */
 
         const int N_points = _pose_and_structure.m_point3d.cols;
-        const int N_cameras = 2; // Only 1 camera is used in Optimization
+        const int N_cameras = 3; // Only 1 camera is used in Optimization
 
         J = cv::Mat::zeros(2*N_points*N_cameras, 5 + 3*N_points, CV_64F);
 
