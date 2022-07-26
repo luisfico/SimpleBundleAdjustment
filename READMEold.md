@@ -8,7 +8,8 @@ These reference pdf are very helpful.
 
 ```
 [1] http://frc.ri.cmu.edu/~kaess/vslam_cvpr14/media/VSLAM-Tutorial-CVPR14-A13-BundleAdjustment.pdf   
-[2] https://pdfs.semanticscholar.org/6081/417b95bec070fb842a704044def427f8ef69.pdf   
+[2] https://pdfs.semanticscholar.org/6081/417b95bec070fb842a704044def427f8ef69.pdf  
+    or  https://www.cs.cmu.edu/~kaess/vslam_cvpr14/media/VSLAM-Tutorial-CVPR14-A13-BundleAdjustment-handout.pdf  OK
 [3] http://ingmec.ual.es/~jlblanco/papers/jlblanco2010geometry3D_techrep.pdf   
 [Japanese]
 [4] https://ipsj.ixsq.nii.ac.jp/ej/?action=repository_action_common_download&item_id=62864&item_no=1&attribute_id=1&file_no=1
