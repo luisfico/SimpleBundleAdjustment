@@ -104,9 +104,9 @@ namespace BA2Viewes {
             _j_structure.copyTo(J.rowRange(i*N_points*2 + 2*j, i*N_points*2 + 2*j + 2).colRange(5 + 3*j, 5 + 3*j + 3));
 
             /*
-            へシアン行列がフルランクであるためには，自由度を下げる必要がある．
-            つまり，第1視点を[I 0]に固定し，第2視点の6成分のうち一つを固定する．ここでは，第2視点の平行移動のxを固定した．
-            ゆえに，第2視点の自由度は 5
+            Para que la matriz Hessiana sea de rango completo, es necesario reducir los grados de libertad.
+             En otras palabras, el primer punto de vista está fijo en [I 0], y uno de los seis componentes del segundo punto de vista está fijo. Aquí se fija x de la traslación del segundo punto de vista.
+             Por tanto, el grado de libertad del segundo punto de vista es 5
             */
             if(i == 1) {
               cv::Mat _j_cam = (cv::Mat_<double>(2, 5)
@@ -622,7 +622,7 @@ namespace BA2Viewes {
     cv::waitKey(1);
 #if 0
     static int count = 1;
-    cv::imwrite(std::to_string(count)+".png", mat_for_viewer);
+    cv::imwrite("out/"+std::to_string(count)+".png", mat_for_viewer);
     count = count + 1;
 
 #endif
